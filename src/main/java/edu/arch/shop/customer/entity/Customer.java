@@ -1,13 +1,10 @@
 package edu.arch.shop.customer.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "customers")
@@ -20,5 +17,16 @@ public class Customer {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String firstName;
+
+    @Column(nullable = false, length = 100)
+    private String lastName;
+
+    @OneToMany
+    // połączenie customera z orderami
+
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
